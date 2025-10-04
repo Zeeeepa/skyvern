@@ -102,10 +102,7 @@ class BrowserManager:
                 else:
                     LOG.warning("Organization ID is not set for task", task_id=task.task_id)
                 page = await browser_state.get_working_page()
-                if page and task.url == page.url:
-                    LOG.info("Continue browser session", browser_session_id=browser_session_id)
-                elif page:
-                    LOG.info("Navigate browser session", browser_session_id=browser_session_id)
+                if page:
                     await browser_state.navigate_to_url(page=page, url=task.url)
                 else:
                     LOG.warning("Browser state has no page", workflow_run_id=task.workflow_run_id)
